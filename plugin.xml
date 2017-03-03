@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-ssccityselect" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>SSCCitySelect</name>
+    <js-module name="SSCCitySelect" src="www/SSCCitySelect.js">
+        <clobbers target="cordova.plugins.SSCCitySelect"/>
+    </js-module>
+    
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="SSCCitySelect">
+                <param name="android-package" value=""/>
+            </feature>
+        </config-file>
+    </platform>
+    
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="SSCCitySelect">
+                <param name="ios-package" value="CitySelectPlugin"/>
+            </feature>
+        </config-file>
+        <config-file target="*-Info.plist" parent="NSAppTransportSecurity">
+            <dict>
+                <key>NSAllowsArbitraryLoads</key>
+                <true/>
+            </dict>
+        </config-file>
+        <!--依赖库-->
+        <source-file src="src/ios/selectCityLib.a" framework="true"/>
+        <source-file src="src/ios/citydict.plist"/>
+        <header-file src="src/ios/CityViewController.h"/>
+        <source-file src="src/ios/CitySelectPlugin.m"/>
+        <!--pictures-->
+        <resource-file src="src/ios/cancelBtn@2x.png"/>
+        
+    </platform>
+</plugin>
