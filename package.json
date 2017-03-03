@@ -1,0 +1,22 @@
+{
+  "name": "cordova-plugin-ssccityselect",
+  "version": "1.0.1",
+  "description": "citySelect",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YanjiangWu/SSCCitySelect.git"
+  },
+  "keywords": [
+    "city"
+  ],
+  "author": "wuyanjiang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YanjiangWu/SSCCitySelect/issues"
+  },
+  "homepage": "https://github.com/YanjiangWu/SSCCitySelect#readme"
+}

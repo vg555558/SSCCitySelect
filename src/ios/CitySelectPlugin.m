@@ -1,7 +1,7 @@
 /********* GXPlugin.m Cordova Plugin Implementation *******/
 
 #import <Cordova/CDV.h>
-
+#import "CityViewController.h"
 @interface CitySelectPlugin : CDVPlugin {
     // Member variables go here.
 }
@@ -23,9 +23,9 @@
         NSLog(@"传来的参数：%@",paramters);
         
         CityViewController *cityListVC = [[CityViewController alloc] init];
-        cityListVC.currentCityString = @"北京";
+        cityListVC.currentCityString = paramters[@"city"];
         
-        [self presentViewController:cityListVC animated:true completion:^{
+        [self.viewController presentViewController:cityListVC animated:true completion:^{
             
         }];
         
