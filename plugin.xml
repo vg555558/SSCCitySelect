@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-ssccityselect" version="1.0.6" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+<plugin id="cordova-plugin-ssccityselect" version="1.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <name>SSCCitySelect</name>
     <js-module name="SSCCitySelect" src="www/SSCCitySelect.js">
@@ -21,14 +21,99 @@
             <!-- 定位需要的服务 -->
             <service android:name="com.amap.api.location.APSService" />
         </config-file>
+        <config-file parent="/resources" target="res/values/strings.xml">
+            <string name="locating">定位中</string>
+            <string name="search">搜索</string>
+            <string name="notfound">抱歉，未找到！</string>
+            <string name="key_word">请输入关键字</string>
+            <string name="locatez_as">定位为</string>
+            <string name="switch_ornot">，是否切换？</string>
+            <string name="city_show_text_hot">热门城市</string>
+            <string name="city_hotcity_curlocationcity_text">定位城市</string>
+            <string name="third_title_close">关闭</string>
+            <string name="city_hotcity_searchedittext_hint">请输入城市名,首字母或拼音</string>
+            <string name="xml_loading_01">加载中</string>
+            <string name="quit_dialog_cancel">取 消</string>
+            <string name="assistant_upload_dialog_title">提示</string>
+        </config-file>
         <resource-file src="src/android/pinyin4j-2.5.0.jar" target="libs/pinyin4j-2.5.0.jar" />
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <source-file src="src/android/res/anim/city_locating_anim.xml" target-dir="res/anmi"/>
+        <source-file src="src/android/res/anim/publicloading.xml" target-dir="res/anmi"/>
+        <source-file src="src/android/res/color/wb_title_text_color_selector.xml" target-dir="res/color"/>
+        <source-file src="src/android/res/drawable/btn_gray_delete_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/city_hot_grid_item.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/city_item_bg.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/city_search_bg.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/clickable_white_to_gray.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/wb_back_btn.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/wb_btn_off.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/wb_change_city_click.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/wb_list_search_btn.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/wb_title_change_map_btn.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable-hdpi/bookingdetail_public_close.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/btn_choose_city_normal.9.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/city_hot_grid_item.xml" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/city_item_bg.xml" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/city_locate_failed.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/city_locate_success.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/city_locating_frame1.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/city_locating_frame2.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/city_locating_frame3.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/city_search_bg.xml" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/city_switch_pressed.9.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/common_alert_bg.9.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/publicloading1.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/wb_btn_off_normal.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/wb_btn_off_pressed.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/wb_letter_search_normal.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/wb_list_search_enabled.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/wb_list_search_icon.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/wb_list_search_pressed.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/wb_title_change_map_disenabled.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/wb_title_change_map_normal.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/wb_title_change_map_pressed.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/wb_title_drawable.9.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-hdpi/wb_title_search_disabled.png" target-dir="res/drawable-hdpi"/>
+        <source-file src="src/android/res/drawable-xhdpi/empty_page_search.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/res/drawable-xhdpi/topbar_bg.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/res/drawable-xhdpi/wb_back_btn_normal.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/res/drawable-xhdpi/wb_back_btn_pressed.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/res/drawable-xhdpi/wb_btn_off_normal.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/res/drawable-xhdpi/wb_btn_off_pressed.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/res/drawable-xhdpi/wb_list_search_icon.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/res/drawable-xhdpi/wb_list_search_pressed.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/res/drawable-xhdpi/wb_title_change_map_normal.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/res/drawable-xhdpi/wb_title_change_map_pressed.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/res/drawable-xhdpi/wb_title_map_disabled.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/res/drawable-xhdpi/wb_title_search_disabled.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/res/layout/activity_main.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/city_change_dailog.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/city_home.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/city_hot_item_layout.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/city_locate_layout.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/city_search_list_item.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/empty_search_city_item.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/overlay.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/public_cityhot.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/public_cityhot_allcity.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/public_cityhot_header_padding.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/public_cityhot_header_padding_blank.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/public_cityhot_header_searchview.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/public_cityhot_item.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/public_title.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/searchlayout.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/raw/china_city_name" target-dir="res/raw"/>
+        <source-file src="src/android/res/values/colors.xml" target-dir="res/values"/>
+        <source-file src="src/android/res/values/dimens.xml" target-dir="res/values"/>
+        <source-file src="src/android/res/values/drawables.xml" target-dir="res/values"/>
+        <source-file src="src/android/res/values/styles.xml" target-dir="res/values"/>
         <source-file src="src/android/SSCCity.java" target-dir="src/cordova/plugin/sscity/SSCCity"/>
         <source-file src="src/android/cities" target-dir="src/com/nc/rac"/>
         <source-file src="src/android/pinyin" target-dir="src/com/nc/rac"/>
         <source-file src="src/android/utils" target-dir="src/com/nc/rac"/>
     </platform>
-
+    
     
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
