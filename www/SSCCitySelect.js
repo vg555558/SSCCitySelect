@@ -5,6 +5,5 @@ var SSCCitySelect = {
 		exec(success, error, "SSCCitySelect","startSelectCity",[parameters]);
 	}
 };
-
 module.exports = SSCCitySelect;
 

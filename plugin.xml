@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-ssccityselect" version="1.0.2" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+<plugin id="cordova-plugin-ssccityselect" version="1.0.4" xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <name>SSCCitySelect</name>
     <js-module name="SSCCitySelect" src="www/SSCCitySelect.js">
@@ -9,10 +9,26 @@
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="SSCCitySelect">
-                <param name="android-package" value=""/>
+                <param name="android-package" value="cordova.plugin.sscity.SSCCity"/>
             </feature>
         </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.nc.rac.cities.citylist.CityList" />
+            <activity android:name="com.nc.rac.cities.citylist.searchactivity" />
+            <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="dfc50b6ca0379c9c0ef690a0ad7285eb" />
+            <!-- 定位需要的服务 -->
+            <service android:name="com.amap.api.location.APSService" />
+        </config-file>
+        <resource-file src="src/android/pinyin4j-2.5.0.jar" target="libs/pinyin4j-2.5.0.jar" />
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <source-file src="src/android/SSCCity.java" target-dir="src/cordova/plugin/sscity/SSCCity"/>
+        <source-file src="src/android/cities" target-dir="src/com/nc/rac"/>
+        <source-file src="src/android/pinyin" target-dir="src/com/nc/rac"/>
+        <source-file src="src/android/utils" target-dir="src/com/nc/rac"/>
     </platform>
+
     
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
