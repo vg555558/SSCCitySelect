@@ -58,7 +58,7 @@ public class SSCCity extends CordovaPlugin {
                     try {
                         String cityResult = data.getStringExtra("city");
                         JSONObject jsonObject=new JSONObject();
-                        jsonObject.put("city",jsonObject);
+                        jsonObject.put("city",cityResult);
                         callbackContext.success(jsonObject);
                     } catch (JSONException e) {
                         e.printStackTrace();
