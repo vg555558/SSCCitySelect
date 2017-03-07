@@ -57,6 +57,9 @@
         cityListVC.selectString = ^(NSString* citySting){
             
             NSLog(@"%@",citySting);
+            if ([citySting  isEqual: @"没有选择"]) {
+                citySting = @"";
+            }
             NSDictionary * dic = [NSDictionary dictionaryWithObject:citySting forKey:@"city"];
             
             CDVPluginResult *commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dic];
