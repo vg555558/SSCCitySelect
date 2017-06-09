@@ -27,23 +27,9 @@
     NSLog(@"传来的参数：%@",paramters);
     
     
-    //    self.loc = [locationGPS sharedlocationGPS];
-    //    [self.loc getAuthorization];//授权
-    //    [self.loc startLocation];//开始定位
-    //    self.loc.address = ^(NSString * address) {
-    //
-    //        NSDictionary * dic = [NSDictionary dictionaryWithObject:address forKey:@"poiName"];
-    //
-    //
-    //    };
-    
-    
-    
-    
-    
     CityViewController *cityListVC = [[CityViewController alloc] init];
     cityListVC.currentCityString = paramters[@"city"];
-    
+    cityListVC.resouceType = paramters[@"resouceType"];
     if ([cityListVC.currentCityString  isEqual: @""] || cityListVC.currentCityString == nil ) {
         cityListVC.currentCityString = @"没有选择";
     }

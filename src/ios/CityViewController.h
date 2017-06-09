@@ -13,4 +13,5 @@
 }
 @property (nonatomic,copy)void(^selectString)(NSString *string);
 @property (nonatomic,copy)NSString *currentCityString;
+@property (nonatomic,copy)NSString *resouceType;
 @end
