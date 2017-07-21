@@ -3,14 +3,13 @@
 #import <Cordova/CDV.h>
 #import "CityViewController.h"
 #import <MapKit/MapKit.h>
-#import "locationGPS.h"
 //#import "Myanotation.h"
-#import "LocationManager.h"
+
 @interface CitySelectPlugin : CDVPlugin {
     // Member variables go here.
 }
 - (void)startSelectCity:(CDVInvokedUrlCommand*)command;
-@property(nonatomic)locationGPS *loc;
+
 @end
 
 @implementation CitySelectPlugin
@@ -28,9 +27,9 @@
     
     
     CityViewController *cityListVC = [[CityViewController alloc] init];
-    cityListVC.currentCityString = paramters[@"city"];
+    cityListVC.currentCityString = (paramters[@"city"] ?paramters[@"city"]:@"");
     cityListVC.resouceType = paramters[@"resouceType"];
-    if ([cityListVC.currentCityString  isEqual: @""] || cityListVC.currentCityString == nil ) {
+    if ([cityListVC.currentCityString isKindOfClass:[NSNull class]] || [cityListVC.currentCityString  isEqual: @""] || cityListVC.currentCityString == nil ) {
         cityListVC.currentCityString = @"没有选择";
     }
     

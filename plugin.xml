@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-ssccityselect" version="1.1.8" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+<plugin id="cordova-plugin-ssccityselect" version="1.1.9" xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <name>SSCCitySelect</name>
     <js-module name="SSCCitySelect" src="www/SSCCitySelect.js">
@@ -127,14 +127,23 @@
                 <true/>
             </dict>
         </config-file>
-        <!--依赖库-->
-        <source-file src="src/ios/selectCityLib.a" framework="true"/>
         <source-file src="src/ios/citydict.plist"/>
         <source-file src="src/ios/traindict.plist"/>
         <header-file src="src/ios/CityViewController.h"/>
+        <source-file src="src/ios/CityViewController.m"/>
+        <header-file src="src/ios/ResultCityController.h"/>
+        <source-file src="src/ios/ResultCityController.m"/>
+        <header-file src="src/ios/CityModel.h"/>
+        <source-file src="src/ios/CityModel.m"/>
+        <header-file src="src/ios/CityTableViewCell.h"/>
+        <source-file src="src/ios/CityTableViewCell.m"/>
+        <header-file src="src/ios/CustomSearchView.h"/>
+        <source-file src="src/ios/CustomSearchView.m"/>
+        <header-file src="src/ios/CustomTopView.h"/>
+        <source-file src="src/ios/CustomTopView.m"/>
         <source-file src="src/ios/CitySelectPlugin.m"/>
         <!--pictures-->
-        <resource-file src="src/ios/cancelBtn@2x.png"/>
-<!--        <resource-file src="src/ios/back@2x.png"/>-->
+        <resource-file src="src/ios/selectCityBack@2x.png"/>
     </platform>
+
 </plugin>
