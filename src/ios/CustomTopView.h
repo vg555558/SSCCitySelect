@@ -15,5 +15,6 @@
 @end
 
 @interface CustomTopView : UIView
-@property (nonatomic,assign) id <CustomTopViewDelegate>delegate;
+    @property (nonatomic,assign) id <CustomTopViewDelegate>delegate;
+    @property (nonatomic, strong) UILabel * label;//显示的题目
 @end

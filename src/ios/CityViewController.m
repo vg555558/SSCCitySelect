@@ -81,6 +81,13 @@
     
     self.navView = [[CustomTopView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
     _navView.delegate = self;
+    if([_resouceType  isEqual: @"train"]){
+        self.navView.label.text = @"选择火车站";
+    }else if ([_resouceType  isEqual: @"plane"]){
+        self.navView.label.text  = @"选择飞机场";
+    }if ([_resouceType  isEqual: @"city"]){
+        self.navView.label.text  = @"选择城市";
+    }
     _navView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:1.0 alpha:1.0];
     [self.view addSubview:_navView];
 }
@@ -155,7 +162,7 @@
         CityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cityCell"];
         if(cell==nil)
         {
-            cell = [[CityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cityCell" cityArray:self.dataArray[indexPath.section]];
+            cell = [[CityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cityCell" cityArray:self.dataArray[indexPath.section] type:_resouceType];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.didSelectedBtn = ^(int tag){
@@ -339,9 +346,9 @@
     NSString *name = @"";
     if([_resouceType  isEqual: @"train"]){
         name = @"traindict";
-    }else if ([_resouceType  isEqual: @"city"]){
-        name = @"citydict";
-    }else{
+    }else if ([_resouceType  isEqual: @"plane"]){
+        name = @"planedict";
+    }if ([_resouceType  isEqual: @"city"]){
         name = @"citydict";
     }
     NSString *path=[[NSBundle mainBundle] pathForResource:name
@@ -356,12 +363,31 @@
     }];
     [self.rightIndexArray addObjectsFromArray:self.sectionTitlesArray];
     [self.rightIndexArray insertObject:UITableViewIndexSearch atIndex:0];
-    [self.sectionTitlesArray insertObject:@"热门城市" atIndex:0];
-    [self.sectionTitlesArray insertObject:@"当前城市" atIndex:0];
-    self.currentCityArray = @[_currentCityString];
-    self.hotCityArray = @[@"上海",@"北京",@"广州",@"深圳",@"武汉",@"天津",@"西安",@"南京",@"杭州"];
-    [self.dataArray insertObject:self.hotCityArray atIndex:0];
-    [self.dataArray insertObject:self.currentCityArray atIndex:0];
+    
+    if ([_resouceType  isEqual: @"city"]) {
+        [self.sectionTitlesArray insertObject:@"热门城市" atIndex:0];
+        [self.sectionTitlesArray insertObject:@"当前城市" atIndex:0];
+        self.currentCityArray = @[_currentCityString];
+        self.hotCityArray = @[@"上海",@"北京",@"广州",@"深圳",@"武汉",@"天津",@"西安",@"南京",@"杭州"];
+        [self.dataArray insertObject:self.hotCityArray atIndex:0];
+        [self.dataArray insertObject:self.currentCityArray atIndex:0];
+    }else if ([_resouceType  isEqual: @"plane"]){
+        [self.sectionTitlesArray insertObject:@"热门机场" atIndex:0];
+        [self.sectionTitlesArray insertObject:@"当前机场" atIndex:0];
+        self.currentCityArray = @[_currentCityString];
+        self.hotCityArray = @[@"北京-首都国际机场",@"上海-虹桥国际机场",@"广州-新白云国际机场",@"深圳-宝安国际机场",@"武汉-天河国际机场",@"天津-滨海国际机场"];
+        [self.dataArray insertObject:self.hotCityArray atIndex:0];
+        [self.dataArray insertObject:self.currentCityArray atIndex:0];
+    }if ([_resouceType  isEqual: @"train"]){
+        [self.sectionTitlesArray insertObject:@"热门车站" atIndex:0];
+        [self.sectionTitlesArray insertObject:@"当前车站" atIndex:0];
+        self.currentCityArray = @[_currentCityString];
+        self.hotCityArray = @[@"北京西",@"北京南",@"上海虹桥",@"杭州东",@"南京南",@"天津南",@"天津",@"成都东",@"广州南"];
+        [self.dataArray insertObject:self.hotCityArray atIndex:0];
+        [self.dataArray insertObject:self.currentCityArray atIndex:0];
+    }
+    
+    
 }
 - (NSString *)Charactor:(NSString *)aString getFirstCharactor:(BOOL)isGetFirst
 {

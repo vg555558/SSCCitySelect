@@ -17,7 +17,7 @@
         self.backgroundColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
         
         _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(5, 7, frame.size.width-10, 30)];
-        _searchBar.placeholder = @"请输入城市名称/拼音";
+        _searchBar.placeholder = @"请输入中文名称/拼音";
         _searchBar.delegate = self;
        
         _searchBar.barStyle = UIBarMetricsDefault;
