@@ -28,11 +28,7 @@
     
     CityViewController *cityListVC = [[CityViewController alloc] init];
     cityListVC.currentCityString = (paramters[@"city"] ?paramters[@"city"]:@"");
-    if (paramters[@"resouceType"] == nil) {
-        return;
-    }
     cityListVC.resouceType = paramters[@"resouceType"];
-    
     if ([cityListVC.currentCityString isKindOfClass:[NSNull class]] || [cityListVC.currentCityString  isEqual: @""] || cityListVC.currentCityString == nil ) {
         cityListVC.currentCityString = @"没有选择";
     }
