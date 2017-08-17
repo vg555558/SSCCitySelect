@@ -21,7 +21,7 @@ public class DBManager
 {
 	private final int BUFFER_SIZE = 400000;
 	private static final String PACKAGE_NAME = "com.nc.rac";//使用项目的包名
-	public static final String DB_NAME = "china_city_name.db";
+	public static final String DB_NAME = "address_db_dataresources.db";
 	public static final String DB_PATH = "/data" + Environment.getDataDirectory().getAbsolutePath() + "/" + PACKAGE_NAME ; // ·
 	private Context mContext;
 	private SQLiteDatabase database;
@@ -41,8 +41,8 @@ public class DBManager
 	}
 
 	/**
-	 * 
-	 * 
+	 *
+	 *
 	 * @param dbFile
 	 * @return SQLiteDatabase
 	 * @author gugalor
@@ -53,7 +53,7 @@ public class DBManager
 		if (!file.exists())
 		{
 			// // rawеlstream
-			InputStream stream = this.mContext.getResources().openRawResource(R.raw.china_city_name);
+			InputStream stream = this.mContext.getResources().openRawResource(R.raw.address_db_dataresources);
 			try
 			{
 

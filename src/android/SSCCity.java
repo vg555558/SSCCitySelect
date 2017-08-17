@@ -25,8 +25,12 @@ public class SSCCity extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         this.callbackContext = callbackContext;
         if (action.equals("startSelectCity")) {
-            String message = args.getString(0);
-            this.intentCityList(message, callbackContext);
+            try {
+                JSONObject message = args.getJSONObject(0);
+                this.intentCityList(message, callbackContext);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             return true;
         }
         return false;
@@ -40,13 +44,17 @@ public class SSCCity extends CordovaPlugin {
         }
     }
     
-    private void intentCityList(String city, CallbackContext callbackContext) {
+    private void intentCityList(JSONObject city, CallbackContext callbackContext) {
+        try {
+            Intent intent = new Intent(this.cordova.getActivity(), CityList.class);
+            intent.putExtra("city", city.getString("city"));
+            intent.putExtra("resourceType", city.getString("resourceType"));
+            //  cordova.setActivityResultCallback(this);
+            this.cordova.startActivityForResult(this,intent, 2);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         this.callbackContext = callbackContext;
-        Intent intent = new Intent(this.cordova.getActivity(), CityList.class);
-        intent.putExtra("city", city);
-        //  cordova.setActivityResultCallback(this);
-        this.cordova.startActivityForResult(this,intent, 2);
-        
     }
     
     @Override

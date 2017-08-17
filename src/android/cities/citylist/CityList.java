@@ -65,7 +65,10 @@ public class CityList extends Activity implements AMapLocationListener {
 
     View hotcityall;
 
-    String[] hotcity = new String[]{"北京市", "上海市", "深圳市", "广州市"};
+    String[] hotcity = new String[]{"上海", "北京", "广州", "深圳", "武汉", "天津", "西安", "南京", "杭州"};
+    String[] hotTrain = new String[]{"北京西", "北京南", "上海虹桥", "杭州东", "南京南", "天津南", "天津", "成都东", "广州南"};
+    String[] hotPlane = new String[]{"北京-首都国际机场", "上海-虹桥国际机场", "广州-新白云国际机场", "深圳-宝安国际机场", "武汉-天河国际机场", "天津-滨海国际机场"};
+
     WindowManager windowManager;
 
 
@@ -75,7 +78,7 @@ public class CityList extends Activity implements AMapLocationListener {
     boolean locCacheable = true; //开启缓存
     boolean locNeedAddr = true; //需要地址信息
     boolean locGPSFirst = false; //GPS优先
-    long intervalTime = 60*1000; //持续定位间隔时间（毫秒）
+    long intervalTime = 60 * 1000; //持续定位间隔时间（毫秒）
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -104,7 +107,13 @@ public class CityList extends Activity implements AMapLocationListener {
         final GridView localGridView = (GridView) hotcityall.findViewById(R.id.public_hotcity_list);
 
         mCityLit.addHeaderView(hotcityall);
-        HotCityGridAdapter adapter = new HotCityGridAdapter(this, Arrays.asList(hotcity));
+        String resourceType = getIntent().getStringExtra("resourceType");
+        HotCityGridAdapter adapter = new HotCityGridAdapter(this, getHotList(resourceType));
+        if (resourceType.equals("plane")) {
+            localGridView.setNumColumns(2);
+        } else {
+            localGridView.setNumColumns(3);
+        }
         localGridView.setAdapter(adapter);
         localGridView.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -125,8 +134,8 @@ public class CityList extends Activity implements AMapLocationListener {
             @Override
             public void onClick(View v) {
                 String cityModel = city_locate_state.getText().toString();
-                if (cityModel.equals("定位失败")){
-                    cityModel="";
+                if (cityModel.equals("定位失败")) {
+                    cityModel = "";
                 }
                 Setting.Save2SharedPreferences(CityList.this, "city",
                         cityModel);
@@ -145,14 +154,14 @@ public class CityList extends Activity implements AMapLocationListener {
         dbManager.closeDatabase();
         database = SQLiteDatabase.openOrCreateDatabase(DBManager.DB_PATH + "/"
                 + DBManager.DB_NAME, null);
-        mCityNames = getCityNames();
+        mCityNames = getCityNames(getIntent().getStringExtra("resourceType"));
         database.close();
         letterListView
                 .setOnTouchingLetterChangedListener(new LetterListViewListener());
         alphaIndexer = new HashMap<String, Integer>();
         handler = new Handler();
-        overlayThread = new OverlayThread();
         initOverlay();
+        overlayThread = new OverlayThread();
         setAdapter(mCityNames);
         mCityLit.setOnItemClickListener(new CityListOnItemClick());
         backbutton.setOnClickListener(new View.OnClickListener() {
@@ -189,6 +198,18 @@ public class CityList extends Activity implements AMapLocationListener {
             default:
                 break;
         }
+    }
+
+    private List<String> getHotList(String resourceType) {
+        List<String> list = null;
+        if (resourceType.equals("train")) {
+            list = Arrays.asList(hotTrain);
+        } else if (resourceType.equals("plane")) {
+            list = Arrays.asList(hotPlane);
+        } else {
+            list = Arrays.asList(hotcity);
+        }
+        return list;
     }
 
     /**
@@ -277,10 +298,11 @@ public class CityList extends Activity implements AMapLocationListener {
     /**
      * @return
      */
-    private ArrayList<CityModel> getCityNames() {
+    private ArrayList<CityModel> getCityNames(String resourceType) {
         ArrayList<CityModel> names = new ArrayList<CityModel>();
+        String tableName = getTableNameByCity(resourceType);
         Cursor cursor = database.rawQuery(
-                "SELECT * FROM T_City ORDER BY NameSort", null);
+                "SELECT * FROM " + tableName + " ORDER BY NameSort", null);
         for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToPosition(i);
             CityModel cityModel = new CityModel();
@@ -292,6 +314,18 @@ public class CityList extends Activity implements AMapLocationListener {
         }
         cursor.close();
         return names;
+    }
+
+    private String getTableNameByCity(String resourceType) {
+        String tableName = "";
+        if (resourceType.equals("plane")) {
+            tableName = "T_Plane";
+        } else if (resourceType.equals("train")) {
+            tableName = "T_Train";
+        } else {
+            tableName = "T_City";
+        }
+        return tableName;
     }
 
     /**
@@ -432,11 +466,10 @@ public class CityList extends Activity implements AMapLocationListener {
     }
 
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        windowManager.removeView(overlay);
+        windowManager.removeViewImmediate(overlay);
 
         if (null != locationClient) {
             /**
@@ -470,12 +503,12 @@ public class CityList extends Activity implements AMapLocationListener {
     // overlay
     private class OverlayThread implements Runnable {
 
-        @Override
-        public void run() {
-            overlay.setVisibility(View.GONE);
-        }
+         @Override
+         public void run() {
+             overlay.setVisibility(View.GONE);
+         }
+     }
 
-    }
 
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
@@ -498,7 +531,7 @@ public class CityList extends Activity implements AMapLocationListener {
                 case AMapUtils.MSG_LOCATION_FINISH:
                     AMapLocation loc = (AMapLocation) msg.obj;
                     String result = AMapUtils.getLocationCity(loc);
-                    city_locate_state.setText(result);
+                    city_locate_state.setText(result.replace("市", ""));
                     break;
 //                //停止定位
 //                case AMapUtils.MSG_LOCATION_STOP:
@@ -507,7 +540,9 @@ public class CityList extends Activity implements AMapLocationListener {
                 default:
                     break;
             }
-        };
+        }
+
+        ;
     };
 
     // 根据控件的选择，重新设置定位参数

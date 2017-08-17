@@ -14,7 +14,7 @@
                 android:gravity="center"
                 android:maxLength="4"
                 android:singleLine="true"
-                android:text="北京市"
+                android:text="北京"
                 android:textColor="#ffffffff"
                 android:textSize="@dimen/home_location_textsize" />
 
