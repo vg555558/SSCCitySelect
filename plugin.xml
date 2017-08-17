@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-ssccityselect" version="2.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+<plugin id="cordova-plugin-ssccityselect" version="2.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <name>SSCCitySelect</name>
     <js-module name="SSCCitySelect" src="www/SSCCitySelect.js">
         <clobbers target="cordova.plugins.SSCCitySelect"/>
     </js-module>
-    
+
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="SSCCitySelect">
@@ -103,7 +103,7 @@
         <source-file src="src/android/res/layout/public_cityhot_item.xml" target-dir="res/layout"/>
         <source-file src="src/android/res/layout/public_title.xml" target-dir="res/layout"/>
         <source-file src="src/android/res/layout/searchlayout.xml" target-dir="res/layout"/>
-        <source-file src="src/android/res/raw/china_city_name" target-dir="res/raw"/>
+        <source-file src="src/android/res/raw/address_db_dataresources" target-dir="res/raw"/>
         <source-file src="src/android/res/values/colors.xml" target-dir="res/values"/>
         <source-file src="src/android/res/values/dimens.xml" target-dir="res/values"/>
         <source-file src="src/android/res/values/drawables.xml" target-dir="res/values"/>
@@ -113,8 +113,8 @@
         <source-file src="src/android/pinyin" target-dir="src/com/nc/rac"/>
         <source-file src="src/android/utils" target-dir="src/com/nc/rac"/>
     </platform>
-    
-    
+
+
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
             <feature name="SSCCitySelect">
@@ -127,24 +127,13 @@
                 <true/>
             </dict>
         </config-file>
+        <!--依赖库-->
+        <source-file src="src/ios/selectCityLib.a" framework="true"/>
         <source-file src="src/ios/citydict.plist"/>
-        <source-file src="src/ios/traindict.plist"/>
-        <source-file src="src/ios/planedict.plist"/>
         <header-file src="src/ios/CityViewController.h"/>
-        <source-file src="src/ios/CityViewController.m"/>
-        <header-file src="src/ios/ResultCityController.h"/>
-        <source-file src="src/ios/ResultCityController.m"/>
-        <header-file src="src/ios/CityModel.h"/>
-        <source-file src="src/ios/CityModel.m"/>
-        <header-file src="src/ios/CityTableViewCell.h"/>
-        <source-file src="src/ios/CityTableViewCell.m"/>
-        <header-file src="src/ios/CustomSearchView.h"/>
-        <source-file src="src/ios/CustomSearchView.m"/>
-        <header-file src="src/ios/CustomTopView.h"/>
-        <source-file src="src/ios/CustomTopView.m"/>
         <source-file src="src/ios/CitySelectPlugin.m"/>
         <!--pictures-->
-        <resource-file src="src/ios/selectCityBack@2x.png"/>
+        <resource-file src="src/ios/cancelBtn@2x.png"/>
+        <resource-file src="src/ios/quit@2x.png"/>
     </platform>
-
 </plugin>
